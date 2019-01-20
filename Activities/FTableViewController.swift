@@ -44,7 +44,7 @@ class FTableViewController: UITableViewController {
         }catch{
             print("Error:", error.localizedDescription)
         }
-        //2.無限循環播放：
+        //2.無限循環播放
         audioPlayer.numberOfLoops = -1
         //3.播放音量：(最小~最大 = 0.0~1.0) 此音樂作為背景音樂，要小聲一點，才不會把朗讀藝文活動詳細資訊的聲音蓋過去
         audioPlayer.volume = 0.5
