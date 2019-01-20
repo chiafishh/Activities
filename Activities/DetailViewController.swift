@@ -39,19 +39,32 @@ class DetailViewController: UIViewController {
         
         super.viewDidLoad()
         speaking = 0
-        if let act1 = act1 {
+        let noInfo = "無資訊"
+        if let act1 = act1{
             navigationItem.title = "詳細資訊"
             titleLabel2.text = act1.title
-            showInfoTime.text = act1.showInfo[0].time
-            showInfoLocationTextField.text = act1.showInfo[0].locationName + "\n" + act1.showInfo[0].location
             
-            //顯示價格
-            if act1.showInfo[0].price != ""{
-                priceLabel.text = act1.showInfo[0].price
+            if act1.showInfo?.count != 0{
+                showInfoTime.text = act1.showInfo![0].time!
+                showInfoLocationTextField.text = act1.showInfo![0].locationName! + "\n" + act1.showInfo![0].location!
+                
+                //顯示價格
+                if act1.showInfo![0].price! != ""{
+                    priceLabel.text = act1.showInfo![0].price
+                }
+                else{
+                    priceLabel.text = "免費"
+                }
             }
-            else{
-                priceLabel.text = "免費"
+            else{                
+                showInfoTime.text = noInfo
+                showInfoLocationTextField.text = noInfo
+                priceLabel.text = noInfo
             }
+            
+            
+            
+            
             
             detail.text = act1.descriptionFilterHtml
             speakdetail = detail.text//給朗讀詳細內容的功能使用

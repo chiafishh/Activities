@@ -9,10 +9,9 @@
 import Foundation
 
 struct ShowInfo0: Codable {
-    var time: String
-    var location: String
-    var locationName: String
-    var onSales: String
+    var time: String?
+    var location: String?
+    var locationName: String?
     var price: String?
 }
 
@@ -23,7 +22,7 @@ struct Act1: Codable {
     var imageUrl: URL
     var webSales: String?
     var sourceWebPromote: String?
-    var showInfo: [ShowInfo0]
+    var showInfo: [ShowInfo0]?
 }
 
 struct Act0: Codable{

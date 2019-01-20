@@ -8,11 +8,13 @@
 
 import UIKit
 import Foundation
+import AVFoundation
 
 class FTableViewController: UITableViewController {
 
     var acts =  [Act1]()
     var showInfos = [ShowInfo0]()
+    var audioPlayer:AVAudioPlayer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +34,23 @@ class FTableViewController: UITableViewController {
                  }
                  task.resume()
              }
- 
+        
+        //播放音樂：
+        //1.設定
+        let url = Bundle.main.url(forResource: "piano", withExtension: "mp3")
+        do{
+            audioPlayer = try AVAudioPlayer(contentsOf: url!)
+            audioPlayer.prepareToPlay()
+        }catch{
+            print("Error:", error.localizedDescription)
+        }
+        //2.無限循環播放：
+        audioPlayer.numberOfLoops = -1
+        //3.播放音量：(最小~最大 = 0.0~1.0) 此音樂作為背景音樂，要小聲一點，才不會把朗讀藝文活動詳細資訊的聲音蓋過去
+        audioPlayer.volume = 0.5
+        //4.播放
+        audioPlayer.play()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -76,4 +94,5 @@ class FTableViewController: UITableViewController {
             controller?.act1 = act1
         }
     }
+
 }
